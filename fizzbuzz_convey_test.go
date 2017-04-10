@@ -15,7 +15,7 @@ func TestFizzBuzzConveyTestable(t *testing.T) {
 		3: "Fizz",
 		4: "4",
 		5: "Buzz",
-		15: "FizzBuzz",
+		15: "FizzBuzz",		// not this trailing comma
 	} {
 		Convey(fmt.Sprintf("A value of %d", input), t, func() {
 			Convey(fmt.Sprintf("Will return %s", want), func() {
