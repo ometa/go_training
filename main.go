@@ -99,6 +99,11 @@ func partial_fizzbuzz () {
 	}
 }
 
+// synactic sugar: ...int is sugar for passing a slice
+func variaticArgumentFizzBuzz(vals ...int) {
+	fizzBuzz(vals)
+}
+
 // fizzbuzz that takes a integer slice parameter
 func fizzBuzz(vals []int) {
 	for _, i := range(vals) {
@@ -115,6 +120,127 @@ func fizzBuzz(vals []int) {
 	}
 }
 
+func pointerExample1() {
+	a := &[]int{1,2,3}	// create me a pointer to a slice of ints  & = create something
+	b := a
+	println(b)
+	//b[2] = 5 // this is an error, cannot set the 3rd element of a pointer!
+}
+
+func pointerExample2() {
+	a := []*int{}	// create a slice of pointers to ints
+	b := a
+	println(b)
+}
+
+func pointerExample3() {
+	i := 1
+	a := []*int{&i}
+	b := a
+	fmt.Println(a)
+	fmt.Println(b)
+}
+
+// -----------------------------------------------------------
+
+// this function receives a copy of the value of i, not the pointer to i
+func demonstrateCopy2(i int) {
+	i++
+	println(i)
+}
+
+// prints:
+// 2
+// 1
+func demonstrateCopy() {
+	i := 1
+	demonstrateCopy2(i)
+	println(i)
+}
+
+
+// -----------------------------------------------------------
+
+type foo struct {
+	i int
+}
+
+func (f foo) foo() {
+	f.i++
+}
+
+// this function receives a copy of the value of i, not the pointer to i
+func demonstratePassByReference() {
+	f := foo{3}
+	f.foo()
+	fmt.Println(f)
+}
+
+// -----------------------------------------------------------
+// maps
+//
+func mapExample() {
+	// var m map[string]int  	// nil!
+
+	var m = make(map[string]int, 100) 	// use make when we know how big our map will be
+	m["a"] = 1
+
+	x := map[string]int{
+		"a": 1,
+	}
+
+	println(x["b"]) 	// prints 0 since 0 is the default empty value for int.
+
+	// since 0 is the default for int, we don't know if it's actually contained in our map, so add a
+	// second paraemter which is a bool that says if the key is in the map or not.
+
+/* ask him how to get the bool for if a value is present in the map
+	y := map[string]int{
+		"a": 1,
+	}
+
+	println(y["b"], present) 	// prints 0 since 0 is the default empty value for int.
+*/
+
+	// map iteration in Go is deliberately random.
+
+/* ask him what's wrong with this.
+	m := map[int]string{
+		1: "a", 2: "b", 3: "c"}
+
+	for k := range m {
+		if k % 2 == 0 {
+			delete(m, k)
+		}
+	}
+*/
+}
+
+func fizzBuzzMap(vals ...int) map[int]string {
+	//result := map[int]string{}			// less efficient
+	result := make(map[int]string, len(vals))	// more efficient since we know the # of entries
+
+	for _, i := range(vals) {
+		switch {
+		case i%3 == 0 && i%5 == 0:
+			result[i] = "FizzBuzz"
+		case i%3 == 0:
+			result[i] = "Fizz"
+		case i%5 == 0:
+			result[i] = "Buzz"
+		default:
+			result[i] = strconv.Itoa(i)
+		}
+	}
+	return result
+}
+
+// -----------------------------------------------------------
+// -----------------------------------------------------------
+// -----------------------------------------------------------
+// -----------------------------------------------------------
+
+
 func main() {
 	//fizzbuzz()
 	//print_slice_details()
@@ -122,6 +248,9 @@ func main() {
 	//string_ascii_gotcha()
 	//create_new_slice()
 	//partial_fizzbuzz()
-	fizzBuzz([]int {1,2,3,4,5,6,7,8,9,10,42,55,99,33,60})
+	//fizzBuzz([]int {1,2,3,4,5,6,7,8,9,10,42,55,99,33,60})
+	//variaticArgumentFizzBuzz(1,2,3,4,5,6,7,8,9,10,42,55,99,33,60)
+	//demonstratePassByReference()
+	fmt.Println(fizzBuzzMap(1,2,3,4,5,6,7,8,9,10,42,55,99,33,60))
 }
 
