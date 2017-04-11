@@ -1,4 +1,4 @@
-package fizzbuzz
+package fizzbuzz2
 
 import "strconv"
 
@@ -7,27 +7,27 @@ const (
 	buzz = "Buzz"
 )
 
-type fizzBuzzOp func(i int) string
+type translator func(i int) string
 
-func FizzBuzz(op fizzBuzzOp, i int) string {
+func (op translator) Translate(i int) string {
 	return op(i)
 }
 
-func Fizz(i int) string {
+var Fizz translator = func(i int) string {
 	if i % 3 == 0 {
 		return fizz
 	}
 	return ""
 }
 
-func Buzz(i int) string {
+var Buzz translator = func(i int) string {
 	if i % 5 == 0 {
 		return buzz
 	}
 	return ""
 }
 
-func Number(i int) string {
+var Number translator = func(i int) string {
 	if  i % 3 == 0 || i % 5 == 0 {
 		return ""
 	}

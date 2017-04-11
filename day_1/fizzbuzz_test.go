@@ -13,7 +13,7 @@ func TestFizzBuzzTestable(t *testing.T) {
 		15: "FizzBuzz",
 	} {
 		if r:= fizzBuzzTestable(input); r != want {
-			t.Error("fizzbuzz(%s) did not equal expected: %s", input, want)
+			t.Error("fizzbuzz1(%s) did not equal expected: %s", input, want)
 		}
 	}
 }

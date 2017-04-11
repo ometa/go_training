@@ -16,7 +16,7 @@ func isFizz(i int) 	bool	{ return i%3 == 0 }
 func isBuzz(i int) 	bool 	{ return i%5 == 0 }
 //func isNumber(i int) 	bool 	{ fmt.Println(strconv.Itoa(i)) }
 
-// fizzbuzz that takes a integer slice parameter
+// fizzbuzz1 that takes a integer slice parameter
 func fizzBuzzClosure(i int) string {
 	switch {
 	case isFizzbuzz(i):

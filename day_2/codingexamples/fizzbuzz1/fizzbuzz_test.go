@@ -1,8 +1,8 @@
-package fizzbuzz_test
+package fizzbuzz1_test
 
 import (
 	"testing"
-	"github.com/ometa/go_training/day_2/codingexamples/fizzbuzz"
+	"github.com/ometa/go_training/day_2/codingexamples/fizzbuzz1"
 )
 
 func TestFizz(t *testing.T) {
@@ -11,7 +11,7 @@ func TestFizz(t *testing.T) {
 		2: "",
 		3: "Fizz",
 	} {
-		if r:= fizzbuzz.Fizz(input); r != want {
+		if r:= fizzbuzz1.Fizz(input); r != want {
 			t.Error("Fizz(%s) did not equal expected: %s", input, want)
 		}
 	}
@@ -25,7 +25,7 @@ func TestBuzz(t *testing.T) {
 		4: "",
 		5: "Buzz",
 	} {
-		if r:= fizzbuzz.Buzz(input); r != want {
+		if r:= fizzbuzz1.Buzz(input); r != want {
 			t.Error("Buzz(%s) did not equal expected: %s", input, want)
 		}
 	}
@@ -39,7 +39,7 @@ func TestNumber(t *testing.T) {
 		4: "4",
 		5: "",
 	} {
-		if r:= fizzbuzz.Number(input); r != want {
+		if r:= fizzbuzz1.Number(input); r != want {
 			t.Error("Number(%s) did not equal expected: %s", input, want)
 		}
 	}

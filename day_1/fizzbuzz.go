@@ -9,7 +9,7 @@ const (
 	buzz = "Buzz"
 )
 
-// fizzbuzz that takes a integer slice parameter
+// fizzbuzz1 that takes a integer slice parameter
 func fizzBuzzTestable(i int) string {
 	switch {
 	case i%3 == 0 && i%5 == 0:
