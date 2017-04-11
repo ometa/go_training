@@ -1,7 +1,8 @@
-package main
+package documentationexample
 
 import "testing"
 
+// MUST prefix tests with Test
 func TestFizzBuzzTestable(t *testing.T) {
 	for input, want := range map[int]string{
 		1: "1",

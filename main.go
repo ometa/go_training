@@ -1,8 +1,10 @@
-package main
+package documentationexample
 
 import (
-"fmt"
+	"fmt"
 	"strconv"
+	"os"
+
 )
 
 
@@ -236,11 +238,98 @@ func fizzBuzzMap(vals ...int) map[int]string {
 }
 
 // -----------------------------------------------------------
+
+/*
+import "errors"
+
+var (
+	TryAgain = errors.New("try again")
+	SlowDown = errors.New("slow down")
+)
+
+func tryOutErrors() {
+	if TryAgain {
+		// do something
+	}
+}
+*/
+
+// -----------------------------------------------------------
+
+// defer is like "finally"
+// defer is a stack, arguments to functions that are deferred are evaluated when defer is called
+func deferSomething() {
+
+	f, err := os.Open("/etc/passwd")
+	if err != nil {
+		println(err)
+	}
+	defer f.Close()
+}
+
+// -----------------------------------------------------------
+
+// since defer is a stack, this function will output the results in the reverse order
+func deferredFizzBuzz(vals []int) {
+	for _, i := range(vals) {
+		switch {
+		case i%3 == 0 && i%5 == 0:
+			defer fmt.Println("FizzBuzz")
+		case i%3 == 0:
+			defer fmt.Println("Fizz")
+		case i%5 == 0:
+			defer fmt.Println("Buzz")
+		default:
+			defer fmt.Println(i)
+		}
+	}
+}
+
+// -----------------------------------------------------------
+
+// a function can be a parameter
+func apply(f func(int) int, i int) int {
+	return f(i)
+}
+
+func double(i int) int { return i*2 }
+func square(i int) int { return i*i }
+
+func testFunctionAsParameter(x int) {
+	i := apply(double, apply(square, x))
+	println(i)
+}
+
+// -----------------------------------------------------------
+// panic
+
+func makePanic() {
+	panic("kaboom")
+}
+
+func testPanic() {
+	makePanic()
+	println("foo")
+}
+
+func testPanicWithRecovery() {
+	defer func() {
+		if x := recover(); x != nil {
+			fmt.Println("recovered: %v\n", x)
+		}
+	}()
+
+	panic([]int{1,2}) 	// whatever you pass to panic is what recover returns.
+}
+
+// -----------------------------------------------------------
+// -----------------------------------------------------------
+// -----------------------------------------------------------
 // -----------------------------------------------------------
 // -----------------------------------------------------------
 // -----------------------------------------------------------
 
-
+/*
 func main() {
 	//fizzbuzz()
 	//print_slice_details()
@@ -251,6 +340,13 @@ func main() {
 	//fizzBuzz([]int {1,2,3,4,5,6,7,8,9,10,42,55,99,33,60})
 	//variaticArgumentFizzBuzz(1,2,3,4,5,6,7,8,9,10,42,55,99,33,60)
 	//demonstratePassByReference()
-	fmt.Println(fizzBuzzMap(1,2,3,4,5,6,7,8,9,10,42,55,99,33,60))
+	//fmt.Println(fizzBuzzMap(1,2,3,4,5,6,7,8,9,10,42,55,99,33,60))
+	//testFunctionAsParameter(2)
 }
 
+*/
+
+
+func main() {
+	fmt.Println(To(199))
+}

@@ -1,19 +1,12 @@
 package documentationexample
 
-// to import this library:
-// $ go get github.com/smartystreets/goconvey/convey
-
-// to run convey:
-// $ cd <your app dir>
-// $ goconvey
 import (
-	"testing"
-	. "github.com/smartystreets/goconvey/convey"
 	"fmt"
+	"testing"
 )
 
 // MUST prefix tests with Test
-func TestFizzBuzzConveyTestable(t *testing.T) {
+func TestFizzBuzzClosure(t *testing.T) {
 	for input, want := range map[int]string{
 		1: "1",
 		2: "2",
